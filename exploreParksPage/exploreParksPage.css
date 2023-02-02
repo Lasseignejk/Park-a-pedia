@@ -1,0 +1,456 @@
+/* colors 
+#090921
+#3b4223
+#929218
+#a65b6f
+#3065a7
+#fdfae9 */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: grid;
+    grid-template-areas: 
+    "nav"
+    "main"
+    "footer";
+    grid-template-rows: 3rem 1fr 3rem;
+    grid-template-columns: 1fr;
+    background-color: #fdfae9;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfae9; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #929218; 
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4223; 
+}
+/* ----------------------nav bar------------------------ */
+header {
+    width: 100%;
+    grid-area: nav;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #fdfae9;
+    text-decoration: none;
+}
+
+.navbar {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    background-color: #3b4223;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    font-family: 'Eczar', serif;
+}
+
+.nav-logo {
+    font-size: 2rem;
+    color: #fdfae9;
+    font-family: 'Eczar', serif;
+}
+
+.nav-logo i {
+    color: #929218;
+}
+
+.nav-link {
+    background:
+        linear-gradient(currentColor 0 0) bottom 0   left 50% /var(--a, 0) 3px no-repeat,
+        linear-gradient(currentColor 0 0) bottom 6px left 50% /var(--b, 0) 3px no-repeat;
+    transition: 0.7s ease;
+    color: #fdfae9;
+    font-size: 1.5rem;
+}
+
+
+.nav-link:hover {
+    color: #cbcb20;
+    --a: 60%;
+    --b: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #fdfae9;
+}
+
+@media(max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -150%;
+        top: 2rem;
+        gap: 0;
+        flex-direction: column;
+        background-color: #3b4223;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        z-index: 1;
+    }
+
+    .nav-item {
+        margin: 16px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+}
+/* ---------------------main & aside------------------------- */
+main {
+    grid-area: main;
+    flex-grow: 1;
+    background-color: rgba(116, 116, 116, 0.75);
+    position: relative;
+}
+.container {
+    max-width: 2000px;
+    margin: auto;
+    padding: 0 3rem;
+    text-align: center;
+}
+
+.showcase:before {
+    content:'';
+    background-color: #fdfae9;
+    background: url('https://source.unsplash.com/random/900×600/?nature,usa') no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* the z-index pushes it behind the showcase div with that primary color background, which is slightly see-through */
+}
+
+.showcase .showcase-inner {
+display: flex;
+flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+}
+
+.contentDiv {
+    border: 1px solid black;
+    background-color: rgba(253, 250, 233, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    margin-top: 30px;
+}
+
+/* ------------------search for a park----------------------- */
+.tag {
+    padding-left: 10px;
+    color: #3b4223;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.searchLabel {
+    padding-right: 10px;
+    color: #3b4223;
+    font-size: 1.2rem;
+}
+
+.stateSelect {
+    border-radius: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: #3b4223;
+    background-color: #fdfae9;
+    font-size: 1rem;
+    border: 2px solid #3b4223;
+    padding: 0 5px;
+    overflow: hidden;
+}
+
+.stateSelect:hover {
+    cursor: pointer;
+}
+
+/* -----------------------cards------------------------- */
+
+.cardContainer {
+    display: none;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    max-height: 100%;
+    padding: 20px;
+    perspective: 2100px;
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+    background-color: rgba(253, 250, 233, 0.6);
+    border-radius: 2rem;
+    margin-bottom: 30px;
+}
+
+.displayCardContainer {
+    display: flex;
+}
+
+.card:hover {
+    cursor:pointer;
+}
+
+.switch {
+    transform: rotateY(180deg);
+}
+
+.card {
+    height: 350px;
+    width: 250px;
+    position: relative;
+    transition: transform 1000ms;
+    transform-style: preserve-3d;
+    border-radius: 1.2em;
+}
+
+.front, .back {
+    height: 100%;
+    width: 100%;
+    border-radius: 1.2rem;
+    position: absolute;
+    backface-visibility: hidden;
+    border: 1px solid #3b4223;
+}
+
+.front {
+    display: flex;
+    color: #fdfae9;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #3b4223;
+}
+
+.back {
+    background-color: #fdfae9;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+.back p {
+    margin: 0;
+    padding: 10px 10px;
+}
+
+.readMoreButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.readMoreButton {
+    width: 6rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: #3065a7;
+    color: #fdfae9;
+    padding: 5px;
+    border: 2px solid #3065a7;
+    margin-bottom: 10px;
+    transition: 300ms;
+}
+
+.readMoreButton:hover {
+    border: 2px solid #3b4223;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* ------------------card content----------------------- */
+
+.parkName {
+    margin: 0 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.parkState {
+    margin: 0 10px;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    
+}
+
+.parkFrontInfo {
+    max-height: 90%;
+}
+
+.parkPhoto {
+    width: 100%;
+    height: 13rem;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.parkPhotoDiv {
+    display: grid;
+    place-items: center;
+    height: 13rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.backup {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 150px;
+    color: #929218;
+}
+
+/* -----------------------footer------------------------ */
+.footer {
+    grid-area: footer;
+    width: 100%;
+    background-color: #3b4223;
+    color: #fdfae9;
+    font-family: 'Eczar', serif;
+    font-size: 1.5rem;
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+}
+
+/* ------------------media queries---------------------- */
+@media only screen and (max-width: 535px) {
+    .tag {
+        font-size: 1.5rem;
+    }
+    .searchLabel,
+    .stateSelect{
+        font-size: 1rem;
+    }
+    option {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 416px) {
+    .tag {
+        font-size: 1.2rem;
+    }
+    .searchLabel {
+        display: none;
+    }
+    .cardContainer {
+        gap: 20px;
+        flex-grow: 1;
+        padding: 20px;
+        perspective: 2100px;
+        width: 88%;
+        margin: 0;
+        height: 100%;
+    }
+    .container {
+        margin: 0;
+        padding: 10px;
+    }
+    .contentDiv {
+        margin-top: 10px;
+    }
+    .parkName, .parkState {
+        font-size: 1rem;
+    }
+    .front {
+        gap: 20px;
+    }
+    .card {
+        height: 250px;
+        width: 250px;
+    }
+    .back {
+        font-size: .8rem;
+    }
+    .parkPhotoDiv {
+        height: 8rem;
+    }
+    .parkPhoto {
+        height: 8rem;
+    }
+    .backup {
+        font-size: 100px;
+    }
+    .showcase:before {
+        display: none;
+    }
+    .showcase .showcase-inner {
+        height: auto;
+    }
+}
